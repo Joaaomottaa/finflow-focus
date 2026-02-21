@@ -1,5 +1,7 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import AppLayout from "@/components/AppLayout";
-import { User, Settings, Bell, LogOut } from "lucide-react";
+import { User, Settings, Bell, LogOut, ChevronRight } from "lucide-react";
 
 export default function Profile() {
   return (
@@ -18,19 +20,22 @@ export default function Profile() {
         </div>
 
         <div className="glass-card overflow-hidden">
-          {[
-            { icon: Settings, label: "Configurações" },
-            { icon: Bell, label: "Notificações" },
-            { icon: LogOut, label: "Sair" },
-          ].map((item) => (
-            <button
-              key={item.label}
-              className="w-full flex items-center gap-3 px-5 py-4 text-sm text-foreground hover:bg-muted/50 transition-colors border-b border-border last:border-0"
-            >
-              <item.icon className="w-5 h-5 text-muted-foreground" />
-              <span>{item.label}</span>
-            </button>
-          ))}
+          <Link to="/settings"
+            className="w-full flex items-center justify-between px-5 py-4 text-sm text-foreground hover:bg-muted/50 transition-colors border-b border-border">
+            <div className="flex items-center gap-3">
+              <Settings className="w-5 h-5 text-muted-foreground" />
+              <span>Configurações</span>
+            </div>
+            <ChevronRight className="w-4 h-4 text-muted-foreground" />
+          </Link>
+          <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-foreground hover:bg-muted/50 transition-colors border-b border-border">
+            <Bell className="w-5 h-5 text-muted-foreground" />
+            <span>Notificações</span>
+          </button>
+          <button className="w-full flex items-center gap-3 px-5 py-4 text-sm text-foreground hover:bg-muted/50 transition-colors">
+            <LogOut className="w-5 h-5 text-muted-foreground" />
+            <span>Sair</span>
+          </button>
         </div>
       </div>
     </AppLayout>
